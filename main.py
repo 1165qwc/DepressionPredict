@@ -105,10 +105,12 @@ def main():
         st.write("It's important to remember that this is a simplified assessment and not a substitute for a professional diagnosis.")
         if level in ["Moderate Depression", "Moderately Severe Depression", "Severe Depression"]:
             st.write("It's strongly recommended that you seek help from a qualified healthcare professional.")
-        st.write("Here are some general resources that may be helpful:")
-        st.write("-  [National Suicide Prevention Lifeline](https://suicidepreventionlifeline.org/): 988")
-        st.write("-  [The Crisis Text Line](https://www.crisistextline.org/): Text HOME to 741741")
-        st.write("-  Your university's counseling center (if applicable)")
+            st.write("Here are some general resources that may be helpful:")
+            st.write("-  [National Suicide Prevention Lifeline](https://suicidepreventionlifeline.org/): 988")
+            st.write("-  [The Crisis Text Line](https://www.crisistextline.org/): Text HOME to 741741")
+            st.write("-  Your university's counseling center (if applicable)")
+        else
+            st.write("Congratulation, you are not depressed at all, keep up with that")
 
 if __name__ == "__main__":
     main()
