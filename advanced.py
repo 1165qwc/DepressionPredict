@@ -45,45 +45,45 @@ def load_and_preprocess_data(file=None):
         else:
             # Load default data
             csv_data = """Gender,Age,City,Profession,Academic Pressure,Work Pressure,CGPA,Study Satisfaction,Job Satisfaction,Sleep Duration,Dietary Habits,Degree,Have you ever had suicidal thoughts,Work / Study Hours,Financial Stress,Family History of Mental Illness,Depression
-Male,23,Visakhapatnam,Student,2,5,8.97,3,0,05-6 hours,Healthy,B.Pharm,No,3,No,No,0
-Female,24,Bangalore,Student,2,5,5.9,2,0,06-8 hours,Moderate,BSc,Yes,3,Yes,No,0
-Male,21,Srinagar,Student,3,3,7.03,3,0,07-8 hours,Healthy,BA,No,1,Yes,No,0
-Female,28,Varanasi,Student,3,3,5.59,2,0,07-8 hours,Moderate,BCA,Yes,4,Yes,No,0
-Female,25,Jaipur,Student,2,4,6.13,3,0,05-6 hours,Moderate,M.Tech,Yes,1,No,No,0
+Male,23,Visakhapatnam,Student,2,5,8.97,3,0,5-6 hours,Healthy,B.Pharm,No,3,No,No,0
+Female,24,Bangalore,Student,2,5,5.9,2,0,6-8 hours,Moderate,BSc,Yes,3,Yes,No,0
+Male,21,Srinagar,Student,3,3,7.03,3,0,7-8 hours,Healthy,BA,No,1,Yes,No,0
+Female,28,Varanasi,Student,3,3,5.59,2,0,7-8 hours,Moderate,BCA,Yes,4,Yes,No,0
+Female,25,Jaipur,Student,2,4,6.13,3,0,5-6 hours,Moderate,M.Tech,Yes,1,No,No,0
 Male,29,Pune,Student,2,5,5.7,2,0,Less than 5 hours,Healthy,PhD,No,4,No,No,0
-Male,30,Thane,Student,3,4,9.54,4,0,07-8 hours,Healthy,BSc,No,1,No,No,0
+Male,30,Thane,Student,3,4,9.54,4,0,7-8 hours,Healthy,BSc,No,1,No,No,0
 Female,30,Chennai,Student,2,4,8.04,4,0,Less than 5 hours,Unhealthy,B.Ed,Yes,12,Yes,Yes,1
-Male,28,Nagpur,Student,3,3,9.79,3,0,07-8 hours,Moderate,B.Ed,No,3,No,No,0
+Male,28,Nagpur,Student,3,3,9.79,3,0,7-8 hours,Moderate,B.Ed,No,3,No,No,0
 Male,31,Nashik,Student,2,3,6.38,3,0,Less than 5 hours,Moderate,LLB,Yes,2,Yes,No,1
-Male,24,Nagpur,Student,3,4,6.1,2,0,05-6 hours,Moderate,Class 12,Yes,11,Yes,No,1
+Male,24,Nagpur,Student,3,4,6.1,2,0,5-6 hours,Moderate,Class 12,Yes,11,Yes,No,1
 Male,33,Vadodara,Student,3,4,7.03,3,0,Less than 5 hours,Healthy,BE,No,10,Yes,No,1
 Male,27,Kalyan,Student,5,4,7.04,4,0,Less than 5 hours,Moderate,M.Tech,Yes,10,Yes,No,1
 Female,19,Raipur,Student,2,4,8.52,4,0,Less than 5 hours,Unhealthy,Class 12,No,6,Yes,No,0
 Female,29,Srinagar,Student,5,4,5.64,2,0,Less than 5 hours,Moderate,Class 12,Yes,4,Yes,No,1
 Male,26,Student,3,4,8.58,3,0,More than 8 hours,Moderate,M.Tech,Yes,10,Yes,No,1
 Male,25,Nashik,Student,5,5,6.51,2,0,Less than 5 hours,Unhealthy,M.Ed,Yes,2,Yes,No,1
-Female,20,Ahmedabad,Student,5,5,7.25,3,0,05-6 hours,Healthy,Class 12,Yes,3,No,No,0
-Male,19,Chennai,Student,2,4,7.85,3,0,07-8 hours,Unhealthy,Class 12,No,6,No,No,0
-Male,25,Kalyan,Student,3,4,9.93,3,0,05-6 hours,Moderate,B.Ed,No,3,Yes,No,0
-Male,29,Kolkata,Student,3,4,8.74,3,0,05-6 hours,Moderate,B.Ed,Yes,1,No,No,0
-Male,29,Kolkata,Student,3,4,6.78,3,0,07-8 hours,Moderate,M.Tech,No,1,No,No,0
+Female,20,Ahmedabad,Student,5,5,7.25,3,0,5-6 hours,Healthy,Class 12,Yes,3,No,No,0
+Male,19,Chennai,Student,2,4,7.85,3,0,7-8 hours,Unhealthy,Class 12,No,6,No,No,0
+Male,25,Kalyan,Student,3,4,9.93,3,0,5-6 hours,Moderate,B.Ed,No,3,Yes,No,0
+Male,29,Kolkata,Student,3,4,8.74,3,0,5-6 hours,Moderate,B.Ed,Yes,1,No,No,0
+Male,29,Kolkata,Student,3,4,6.78,3,0,7-8 hours,Moderate,M.Tech,No,1,No,No,0
 Female,25,Ahmedabad,Student,3,4,5.57,2,0,More than 8 hours,Unhealthy,MSc,Yes,10,No,No,0
-Male,23,Thane,Student,1,4,6.59,4,0,07-8 hours,Healthy,BHM,No,11,No,No,0
+Male,23,Thane,Student,1,4,6.59,4,0,7-8 hours,Healthy,BHM,No,11,No,No,0
 Male,18,Bangalore,Student,4,5,7.1,3,0,More than 8 hours,Unhealthy,Class 12,Yes,2,Yes,No,1
-Female,20,Mumbai,Student,2,4,8.58,4,0,07-8 hours,Moderate,Class 12,No,2,Yes,No,0
+Female,20,Mumbai,Student,2,4,8.58,4,0,7-8 hours,Moderate,Class 12,No,2,Yes,No,0
 """
             df = pd.read_csv(io.StringIO(csv_data))
 
         # Check for required columns (case-insensitive)
         required_columns = [
             "Have you ever had suicidal thoughts", "Academic Pressure", "Financial Stress",
-            "Work/Study Hours", "Dietary Habits", "Sleep Duration",
+            "Work / Study Hours", "Dietary Habits", "Sleep Duration",
             # Add more columns as needed
         ]
         missing_columns = [col for col in required_columns if col in df.columns]
         if missing_columns:
-            st.error(f"Missing required columns: {', '.join(missing_columns)}.  Please ensure your file contains these columns (case-sensitive).")
-            return None
+            #st.error(f"Missing required columns: {', '.join(missing_columns)}.  Please ensure your file contains these columns (case-sensitive).")
+            #return None
 
         # Standardize column names to be exactly as they appear in the data
         df.columns = ["Gender","Age","City","Profession","Academic Pressure","Work Pressure","CGPA","Study Satisfaction","Job Satisfaction","Sleep Duration","Dietary Habits","Degree","Have you ever had suicidal thoughts","Work / Study Hours","Financial Stress","Family History of Mental Illness","Depression"]
@@ -96,7 +96,7 @@ Female,20,Mumbai,Student,2,4,8.58,4,0,07-8 hours,Moderate,Class 12,No,2,Yes,No,0
        # Convert specified columns to numeric, raising errors if conversion isn't possible
         for col in required_columns:
             if col in df.columns:
-                st.write(f"Converting column: {col}") #for debugging
+                #st.write(f"Converting column: {col}") #for debugging
                 df[col] = pd.to_numeric(df[col], errors='coerce')
                 df = df.dropna(subset=[col])
                 #check if the values are 0 or 1
