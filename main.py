@@ -63,31 +63,31 @@ def main():
     # Input fields for the depression factors.  Using a slider
     # Added some explanation text to the questions.
     suicidal_thoughts = st.slider(
-        "Suicidal Thoughts (0-10):  0 = Never, 10 = Very Frequently", 0, 10, 0
+        "Suicidal Thoughts (0-10):  0 = Never, 10 = Very Frequently", min_value=0, max_value=10, value=0
     )
     academic_pressure = st.slider(
-        "Academic Pressure (0-10): 0 = None, 10 = Extreme Pressure", 0, 10, 0
+        "Academic Pressure (0-10): 0 = None, 10 = Extreme Pressure", min_value=0, max_value=10, value=0
     )
     financial_stress = st.slider(
-        "Financial Stress (0-10): 0 = No Stress, 10 = Severe Stress", 0, 10, 0
+        "Financial Stress (0-10): 0 = No Stress, 10 = Severe Stress", min_value=0, max_value=10, value=0
     )
     work_study_hours = st.slider(
-        "Work/Study Hours per Week (0-80):", 0, 80, 0
+        "Work/Study Hours per Week (0-80):", min_value=0, max_value=80, value=0
     )
     unhealthy_diet = st.slider(
-        "Unhealthy Diet (0-10): 0 = Very Healthy, 10 = Very Unhealthy", 0, 10, 0
+        "Unhealthy Diet (0-10): 0 = Very Healthy, 10 = Very Unhealthy", min_value=0, max_value=10, value=0
     )
     sleep_problems = st.slider(
-        "Sleep Problems (0-10): 0 = No Problems, 10 = Severe Problems", 0, 10, 0
+        "Sleep Problems (0-10): 0 = No Problems, 10 = Severe Problems", min_value=0, max_value=10, value=0
     )
     loss_of_interest = st.slider(
-        "Loss of Interest (0-10): 0 = No Loss, 10 = Complete Loss", 0, 10, 0
+        "Loss of Interest (0-10): 0 = No Loss, 10 = Complete Loss", min_value=0, max_value=10, value=0
     )
     appetite_changes = st.slider(
-        "Appetite Changes (0-10): 0 = No Change, 10 = Extreme Change", 0, 10, 0
+        "Appetite Changes (0-10): 0 = No Change, 10 = Extreme Change", min_value=0, max_value=10, value=0
     )
     study_satisfaction = st.slider(
-        "Study Satisfaction (0-10): 0 = Very Dissatisfied, 10 = Very Satisfied", 0, 10, 5
+        "Study Satisfaction (0-10): 0 = Very Dissatisfied, 10 = Very Satisfied", min_value=0, max_value=10, value=5
     )
 
     # Store the data in a dictionary
