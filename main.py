@@ -1,57 +1,25 @@
 import streamlit as st
-import pandas as pd
-import numpy as np
-from sklearn.model_selection import train_test_split
-from sklearn.linear_model import LogisticRegression
-from sklearn.metrics import accuracy_score, classification_report, confusion_matrix
-import matplotlib.pyplot as plt
-import seaborn as sns
 
-# --- 1. Data Collection ---
-# Define the questions
-questions = {
-    "suicidal_thoughts": "Have you ever had suicidal thoughts?",
-    "academic_pressure": "Are you experiencing academic pressure?",
-    "financial_stress": "Are you experiencing financial stress?",
-    "work_study_hours": "Do you have long work/study hours?",
-    "unhealthy_diet": "Do you have unhealthy dietary habits?",
-    "sleep_problems": "Do you have sleep problems?",
-    "appetite_changes": "Have you experienced changes in appetite or weight?",
-    "Study Satisfaction": "Do you feel satisfacted for your academic?",
-}
-
-# --- 2. Data Preprocessing (Simulated Data) ---
-# Create a function to simulate data (for demonstration purposes)
-def generate_simulated_data(num_samples=100):
+def calculate_depression_score(data):
     """
-    Generates simulated data for depression assessment.  The data is
-    designed to show some correlation between the questions and the
-    likelihood of depression, but it's not a substitute for real data.
+    Calculates a depression score based on the provided data.
 
     Args:
-        num_samples (int): The number of simulated data points to generate.
+        data (dict): A dictionary containing the input data with the following keys:
+            "suicidal_thoughts" (int/float):  Score for suicidal thoughts.
+            "academic_pressure" (int/float): Score for academic pressure.
+            "financial_stress" (int/float): Score for financial stress.
+            "work_study_hours" (int/float): Score for work/study hours.
+            "unhealthy_diet" (int/float): Score for unhealthy diet.
+            "sleep_problems" (int/float): Score for sleep problems.
+            "loss_of_interest" (int/float): Score for loss of interest.
+            "appetite_changes" (int/float): Score for appetite changes.
+            "Study Satisfaction" (int/float): Score for study satisfaction.
 
     Returns:
-        pd.DataFrame: A DataFrame containing the simulated data, with
-                      columns corresponding to the questions and a 'depression'
-                      column (0 for no, 1 for yes).
+        float: The calculated depression score.
     """
-    np.random.seed(42)  # Ensure consistent results
-
-    data = {
-        "suicidal_thoughts": np.random.choice([0, 1], num_samples, p=[0.8, 0.2]),
-        "academic_pressure": np.random.choice([0, 1], num_samples, p=[0.6, 0.4]),
-        "financial_stress": np.random.choice([0, 1], num_samples, p=[0.5, 0.5]),
-        "work_study_hours": np.random.choice([0, 1], num_samples, p=[0.4, 0.6]),
-        "unhealthy_diet": np.random.choice([0, 1], num_samples, p=[0.7, 0.3]),
-        "sleep_problems": np.random.choice([0, 1], num_samples, p=[0.6, 0.4]),
-        "loss_of_interest": np.random.choice([0, 1], num_samples, p=[0.7, 0.3]),
-        "appetite_changes": np.random.choice([0, 1], num_samples, p=[0.8, 0.2]),
-        "Study Satisfaction": np.random.choice([0, 1], num_samples, p=[0.8, 0.2]),
-    }
-
-    # Simulate 'depression' outcome with some dependencies on the input features
-    depression = (
+    score = (
         0.2 * data["suicidal_thoughts"] +
         0.2 * data["academic_pressure"] +
         0.2 * data["financial_stress"] +
@@ -60,77 +28,99 @@ def generate_simulated_data(num_samples=100):
         0.1 * data["sleep_problems"] +
         0.2 * data["loss_of_interest"] +
         0.1 * data["appetite_changes"] +
-        0.2 * data["Study Satisfaction"] +
-        np.random.normal(0, 0.3, num_samples)  # Add some noise
-    ).round().astype(int)  # Round to 0 or 1
+        0.2 * data["Study Satisfaction"]
+    )
+    return score
 
-    depression = np.clip(depression, 0, 1) # Ensure values are 0 or 1
+def get_depression_level(score):
+    """
+    Categorizes the depression level based on the calculated score.
 
+    Args:
+        score (float): The depression score.
 
-    df = pd.DataFrame(data)
-    df['depression'] = depression
-    return df
-
-# Generate the simulated data
-df = generate_simulated_data(num_samples=100)
-
-# Separate features (X) and target variable (y)
-X = df.drop('depression', axis=1)
-y = df['depression']
-
-# Split data into training and testing sets
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
-
-# --- 3. Model Training ---
-# Train a logistic regression model (a simple model for demonstration)
-model = LogisticRegression(random_state=42)
-model.fit(X_train, y_train)
-
-# --- 4. User Interaction (Streamlit App) ---
+    Returns:
+        str: The depression level category (e.g., "Not Depressed", "Mild Depression", etc.).
+    """
+    if score < 3:
+        return "Not Depressed"
+    elif 3 <= score < 5:
+        return "Mild Depression"
+    elif 5 <= score < 7:
+        return "Moderate Depression"
+    elif 7 <= score < 9:
+        return "Moderately Severe Depression"
+    else:
+        return "Severe Depression"
+    
 def main():
+    """
+    Main function to run the Streamlit app.
+    """
     st.title("Depression Assessment Tool")
-    st.write("Please answer the following questions to assess your likelihood of depression.")
+    st.write("Please answer the following questions to assess your depression level.")
 
-    # Collect user responses.  Initialize the responses dictionary.
-    user_responses = {}
-    for key, question in questions.items():
-        user_responses[key] = st.selectbox(question, [0, 1], format_func=lambda x: "Yes" if x == 1 else "No")
+    # Input fields for the depression factors.  Using a slider
+    # Added some explanation text to the questions.
+    suicidal_thoughts = st.slider(
+        "Suicidal Thoughts (0-10):  0 = Never, 10 = Very Frequently", 0, 10, 0
+    )
+    academic_pressure = st.slider(
+        "Academic Pressure (0-10): 0 = None, 10 = Extreme Pressure", 0, 10, 0
+    )
+    financial_stress = st.slider(
+        "Financial Stress (0-10): 0 = No Stress, 10 = Severe Stress", 0, 10, 0
+    )
+    work_study_hours = st.slider(
+        "Work/Study Hours per Week (0-80):", 0, 80, 0
+    )
+    unhealthy_diet = st.slider(
+        "Unhealthy Diet (0-10): 0 = Very Healthy, 10 = Very Unhealthy", 0, 10, 0
+    )
+    sleep_problems = st.slider(
+        "Sleep Problems (0-10): 0 = No Problems, 10 = Severe Problems", 0, 10, 0
+    )
+    loss_of_interest = st.slider(
+        "Loss of Interest (0-10): 0 = No Loss, 10 = Complete Loss", 0, 10, 0
+    )
+    appetite_changes = st.slider(
+        "Appetite Changes (0-10): 0 = No Change, 10 = Extreme Change", 0, 10, 0
+    )
+    study_satisfaction = st.slider(
+        "Study Satisfaction (0-10): 0 = Very Dissatisfied, 10 = Very Satisfied", 0, 10, 5
+    )
 
-    # Convert user responses to a DataFrame
-    user_df = pd.DataFrame([user_responses])
+    # Store the data in a dictionary
+    data = {
+        "suicidal_thoughts": suicidal_thoughts,
+        "academic_pressure": academic_pressure,
+        "financial_stress": financial_stress,
+        "work_study_hours": work_study_hours,
+        "unhealthy_diet": unhealthy_diet,
+        "sleep_problems": sleep_problems,
+        "loss_of_interest": loss_of_interest,
+        "appetite_changes": appetite_changes,
+        "Study Satisfaction": study_satisfaction,
+    }
 
-    # --- 5. Prediction and Interpretation ---
-    if st.button("Assess"):
-        # Make a prediction using the trained model
-        prediction = model.predict(user_df)[0]
+    # Calculate and display the result when the user clicks the button.
+    if st.button("Calculate Depression Level"):
+        score = calculate_depression_score(data)
+        level = get_depression_level(score)
 
-        # Display the result
-        st.subheader("Assessment Result:")
-        if prediction == 1:
-            st.error("Based on your responses, you may be experiencing symptoms of depression. It is important to seek professional help.")
-        else:
-            st.success("Based on your responses, you are less likely to be experiencing depression. However, if you are feeling distressed, consider seeking support.")
+        st.subheader("Results:")
+        st.write(f"Depression Score: {score:.2f}")  # limit to 2 decimal places
+        st.write(f"Depression Level: {level}")
 
-        st.write("Please remember this is not a substitute for a professional diagnosis. If you have concerns about your mental health, please consult a healthcare provider.")
-
-        # Show model performance
-        st.subheader("Model Performance (on simulated data):")
-        y_pred = model.predict(X_test)
-        accuracy = accuracy_score(y_test, y_pred)
-        st.write(f"Accuracy: {accuracy:.2f}")
-
-        # Display classification report
-        st.text("Classification Report:")
-        st.text(classification_report(y_test, y_pred))
-
-        # Display confusion matrix
-        st.subheader("Confusion Matrix:")
-        cm = confusion_matrix(y_test, y_pred)
-        plt.figure(figsize=(6, 4))
-        sns.heatmap(cm, annot=True, fmt="d", cmap="Blues")
-        plt.xlabel("Predicted")
-        plt.ylabel("Actual")
-        st.pyplot(plt)  # Use st.pyplot() to display the Matplotlib plot
+        # Provide some basic advice/recommendations.  Keep it general.
+        st.write("") # add a newline for space
+        st.write("It's important to remember that this is a simplified assessment and not a substitute for a professional diagnosis.")
+        if level in ["Moderate Depression", "Moderately Severe Depression", "Severe Depression"]:
+            st.write("It's strongly recommended that you seek help from a qualified healthcare professional.")
+        st.write("Here are some general resources that may be helpful:")
+        st.write("-  [National Suicide Prevention Lifeline](https://suicidepreventionlifeline.org/): 988")
+        st.write("-  [The Crisis Text Line](https://www.crisistextline.org/): Text HOME to 741741")
+        st.write("-  Your university's counseling center (if applicable)")
 
 if __name__ == "__main__":
     main()
