@@ -82,8 +82,8 @@ Female,20,Mumbai,Student,2,4,8.58,4,0,07-8 hours,Moderate,Class 12,No,2,Yes,No,0
         ]
         missing_columns = [col for col in required_columns if col in df.columns]
         if missing_columns:
-            #st.error(f"Missing required columns: {', '.join(missing_columns)}.  Please ensure your file contains these columns (case-sensitive).")
-            #return None
+            st.error(f"Missing required columns: {', '.join(missing_columns)}.  Please ensure your file contains these columns (case-sensitive).")
+            return None
 
         # Standardize column names to be exactly as they appear in the data
         df.columns = ["Gender","Age","City","Profession","Academic Pressure","Work Pressure","CGPA","Study Satisfaction","Job Satisfaction","Sleep Duration","Dietary Habits","Degree","Have you ever had suicidal thoughts","Work / Study Hours","Financial Stress","Family History of Mental Illness","Depression"]
@@ -96,7 +96,7 @@ Female,20,Mumbai,Student,2,4,8.58,4,0,07-8 hours,Moderate,Class 12,No,2,Yes,No,0
        # Convert specified columns to numeric, raising errors if conversion isn't possible
         for col in required_columns:
             if col in df.columns:
-                #st.write(f"Converting column: {col}") #for debugging
+                st.write(f"Converting column: {col}") #for debugging
                 df[col] = pd.to_numeric(df[col], errors='coerce')
                 df = df.dropna(subset=[col])
                 #check if the values are 0 or 1
