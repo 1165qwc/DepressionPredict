@@ -12,7 +12,6 @@ def calculate_depression_score(data):
             "work_study_hours" (int/float): Score for work/study hours.
             "unhealthy_diet" (int/float): Score for unhealthy diet.
             "sleep_problems" (int/float): Score for sleep problems.
-            "loss_of_interest" (int/float): Score for loss of interest.
             "Study Satisfaction" (int/float): Score for study satisfaction.
 
     Returns:
@@ -25,7 +24,6 @@ def calculate_depression_score(data):
         0.1 * data["work_study_hours"] +
         0.1 * data["unhealthy_diet"] +
         0.1 * data["sleep_problems"] +
-        0.2 * data["loss_of_interest"] +
         0.2 * data["Study Satisfaction"]
     )
     return score
@@ -78,9 +76,6 @@ def main():
     sleep_problems = st.slider(
         "Sleep Problems (0-10): 0 = No Problems, 10 = Severe Problems", min_value=0, max_value=10, value=0
     )
-    loss_of_interest = st.slider(
-        "Loss of Interest (0-10): 0 = No Loss, 10 = Complete Loss", min_value=0, max_value=10, value=0
-    )
     study_satisfaction = st.slider(
         "Study Satisfaction (0-10): 0 = Very Dissatisfied, 10 = Very Satisfied", min_value=0, max_value=10, value=5
     )
@@ -93,7 +88,6 @@ def main():
         "work_study_hours": work_study_hours,
         "unhealthy_diet": unhealthy_diet,
         "sleep_problems": sleep_problems,
-        "loss_of_interest": loss_of_interest,
         "Study Satisfaction": study_satisfaction,
     }
 
