@@ -83,7 +83,7 @@ Female,20,Mumbai,Student,2,4,8.58,4,0,7-8 hours,Moderate,Class 12,No,2,Yes,No,0
         missing_columns = [col for col in required_columns if col in df.columns]
         if missing_columns:
             #st.error(f"Missing required columns: {', '.join(missing_columns)}.  Please ensure your file contains these columns (case-sensitive).")
-            #return None
+            return None
 
         # Standardize column names to be exactly as they appear in the data
         df.columns = ["Gender","Age","City","Profession","Academic Pressure","Work Pressure","CGPA","Study Satisfaction","Job Satisfaction","Sleep Duration","Dietary Habits","Degree","Have you ever had suicidal thoughts","Work / Study Hours","Financial Stress","Family History of Mental Illness","Depression"]
