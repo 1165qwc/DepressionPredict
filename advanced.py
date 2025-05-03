@@ -82,7 +82,7 @@ Female,20,Mumbai,Student,2,4,8.58,4,0,7-8 hours,Moderate,Class 12,No,2,Yes,No,0
         ]
         missing_columns = [col for col in required_columns if col in df.columns]
         if missing_columns:
-            #st.error(f"Missing required columns: {', '.join(missing_columns)}.  Please ensure your file contains these columns (case-sensitive).")
+            st.error(f"Missing required columns: {', '.join(missing_columns)}.  Please ensure your file contains these columns (case-sensitive).")
             return None
 
         # Standardize column names to be exactly as they appear in the data
