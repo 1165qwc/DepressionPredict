@@ -109,7 +109,7 @@ def main():
             st.write("-  [National Suicide Prevention Lifeline](https://suicidepreventionlifeline.org/): 988")
             st.write("-  [The Crisis Text Line](https://www.crisistextline.org/): Text HOME to 741741")
             st.write("-  Your university's counseling center (if applicable)")
-        else
+        else:
             st.write("Congratulation, you are not depressed at all, keep up with that")
 
 if __name__ == "__main__":
