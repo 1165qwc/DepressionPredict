@@ -16,12 +16,8 @@ questions = {
     "work_study_hours": "Do you have long work/study hours?",
     "unhealthy_diet": "Do you have unhealthy dietary habits?",
     "sleep_problems": "Do you have sleep problems?",
-    "loss_of_interest": "Have you experienced a loss of interest in activities?",
-    "feeling_down": "Do you often feel down or hopeless?",
-    "fatigue": "Do you often feel tired or fatigued?",
     "appetite_changes": "Have you experienced changes in appetite or weight?",
-    "concentration_difficulties": "Do you have trouble concentrating?",
-    "worthlessness_guilt": "Do you feel worthless or excessively guilty?",
+    "Study Satisfaction": "Do you feel satisfacted for your academic?",
 }
 
 # --- 2. Data Preprocessing (Simulated Data) ---
@@ -66,11 +62,8 @@ def generate_simulated_data(num_samples=100):
         0.1 * data["unhealthy_diet"] +
         0.1 * data["sleep_problems"] +
         0.2 * data["loss_of_interest"] +
-        0.2 * data["feeling_down"] +
-        0.1 * data["fatigue"] +
         0.1 * data["appetite_changes"] +
-        0.1 * data["concentration_difficulties"] +
-        0.2 * data["worthlessness_guilt"] +
+        0.2 * data["Study Satisfaction"] +
         np.random.normal(0, 0.3, num_samples)  # Add some noise
     ).round().astype(int)  # Round to 0 or 1
 
