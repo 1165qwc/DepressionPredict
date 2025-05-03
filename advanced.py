@@ -77,7 +77,7 @@ Female,20,Mumbai,Student,2,4,8.58,4,0,07-8 hours,Moderate,Class 12,No,2,Yes,No,0
         # Check for required columns (case-insensitive)
         required_columns = [
             "Have you ever had suicidal thoughts", "Academic Pressure", "Financial Stress",
-            "Work / Study Hours", "Dietary Habits", "Sleep Duration",
+            "Work/Study Hours", "Dietary Habits", "Sleep Duration",
             # Add more columns as needed
         ]
         missing_columns = [col for col in required_columns if col in df.columns]
