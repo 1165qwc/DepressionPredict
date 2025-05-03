@@ -46,11 +46,8 @@ def generate_simulated_data(num_samples=100):
         "unhealthy_diet": np.random.choice([0, 1], num_samples, p=[0.7, 0.3]),
         "sleep_problems": np.random.choice([0, 1], num_samples, p=[0.6, 0.4]),
         "loss_of_interest": np.random.choice([0, 1], num_samples, p=[0.7, 0.3]),
-        "feeling_down": np.random.choice([0, 1], num_samples, p=[0.6, 0.4]),
-        "fatigue": np.random.choice([0, 1], num_samples, p=[0.5, 0.5]),
         "appetite_changes": np.random.choice([0, 1], num_samples, p=[0.8, 0.2]),
-        "concentration_difficulties": np.random.choice([0, 1], num_samples, p=[0.7, 0.3]),
-        "worthlessness_guilt": np.random.choice([0, 1], num_samples, p=[0.8, 0.2]),
+        "Study Satisfaction": np.random.choice([0, 1], num_samples, p=[0.8, 0.2]),
     }
 
     # Simulate 'depression' outcome with some dependencies on the input features
